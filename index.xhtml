@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Hello World 問題 - 夏色日傘のCodeIQ解答</title>
+    <link rel="stylesheet" href="index.css"/>
+  </head>
+  <body>
+    <h1>Restricted Words -Hello World 問題-</h1>
+    <div class="lastModified">作成：2013-09-20 夏色日傘（<a href="https://twitter.com/shade0710math">@shade0710math</a>）</div>
+    <h2>はじめに</h2>
+    <p>このたび、9 月 19 日まで <a href="https://codeiq.jp/">CodeIQ</a> にて出題されていた、<a href="https://codeiq.jp/ace/yuki_hiroshi/q431">しえるさんの Hello World 問題</a>を解いてみました。<em>数値、文字、文字列のリテラルを使ってはならない</em>という厳しい条件の下で "<code>Hello World</code>" と出力せよ、という問題でした。</p>
+    <p>何とかして整数を取得し、そこから 'H', 'e', 'l', 'o', ' ', 'W', 'r', 'd' の文字コードを生成できれば、所望の文字列を表示することができるでしょう。</p>
+    <h2>実装したプログラム</h2>
+    <p>詳しい解説は「<a href="#description">解説</a>」の項を参照願います。</p>
+    <h3>HelloWorldMain.java</h3>
+    <p>コマンドラインにて "<code>java HelloWorldMain</code>" と打つと "<code>Hello World</code>" と出力します。なお、冒頭に import 文があるのは、冒頭の記載（俗にいうおまじない）によって言語を判別するという、採点上の仕様によるものです。実際には必要ありません。</p>
+    <div class="source">
+      <pre><code>import java.lang.System;
+
+public class HelloWorldMain
+{
+    public static void main( String... args )
+    {
+        final int one = new Object[]{ new Object() }.length;
+        final int two = one + one;
+        final int three = one + two;
+        final int four = two * two;
+        final int five = two + three;
+        final int seven = three + four;
+        final int eight = two * four;
+        final int ten = two * five;
+        
+        byte codeLargeH = (byte)( seven * ten + two );
+        byte codeSmallE = (byte)( ten * ten + one );
+        byte codeSmallL = (byte)( ten * ten + eight );
+        byte codeSmallO = (byte)( ten * ten + ten + one );
+        byte codeSpace = (byte)( three * ten + two );
+        byte codeLargeW = (byte)( eight * ten + seven );
+        byte codeSmallR = (byte)( ten * ten + ten + four );
+        byte codeSmallD = (byte)( ten * ten );
+        
+        System.out.println( new String( new byte[]{ codeLargeH, codeSmallE, codeSmallL, codeSmallL, codeSmallO,
+                codeSpace,codeLargeW, codeSmallO, codeSmallR, codeSmallL, codeSmallD } ) );
+    }
+}</code></pre>
+    </div>
+
+    <h3>実行結果</h3>
+    <p>実行結果は以下の通りです。</p>
+    <div class="source">
+      <pre><code>Hello World</code></pre>
+    </div>
+    
+    <h2 id="description">解説</h2>
+    <h3>数値リテラルを使わずに数値を取得するには？</h3>
+    <p><em>文字リテラルと文字列リテラル使用禁止</em>という状況下で文字を得るには、先ほども述べたとおり、何とかして整数を取得してそこから 'H', 'e', 'l', 'o', ' ', 'W', 'r', 'd' の文字コードを生成するしかありません（<a href="#note01">注1</a>）。よって、72 → 'H', 101 → 'e',……などとしたいところなのですが、<em>数値リテラル使用禁止</em>というしばりもあるので、文字コードの直打ちができません。</p>
+    <p>そこで、最初に<em>要素数 1 の配列の要素数を取得し、それ以外の数を四則演算によって求める</em>という方針で行くことにしました。ちなみに、提出後に気付いたのですが、<code>int zero = args.length - args.length;</code> で 0 を取得してインクリメント演算子などで 1 以上の数値を取得してもよかったですね。</p>
+    
+    <h2>終わりに</h2>
+    <p>なかなかにユニークな問題でした。<code>System.out.println( "Hello World" );</code> と書けることのありがたみが解ったような気がします。多分。</p>
+    
+    <hr class="separator" />
+    <ul class="note">
+      <li id="note01">注1. "Hello" と "World" については、"Hello" という名前のクラスと "World" という名前のクラスを作成し、それらのクラス名を <code>Hello.class.getName();</code> 及び <code>World.class.getName();</code> で取得というものでもレギュレーションに違反しません（実際、<a href="https://gist.github.com/hyuki0000/6622058">結城先生もそのように解答していらっしゃいます</a>）。ただし、半角スペースだけはクラス名などから取得する術がないため、別の方法で取得せねばなりません。</li>
+    </ul>
+    
+    <hr class="separator" />
+    <div class="copyright">&#169;Higasa Natsuiro(shade0710/shade0710math) 2013 All rights reserved.</div>
+  </body>
+</html>
