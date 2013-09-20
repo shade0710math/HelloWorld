@@ -13,6 +13,8 @@ body {
  */
 h1, h2, h3, h4, h5, h6 {
     font-family: "Times New Roman", "ＭＳ ゴシック";
+    width: 99%;
+    margin: auto;
 }
 
 /**
@@ -23,6 +25,8 @@ p {
     text-indent: 1em;
     font-family: "Times New Roman", "ＭＳ ゴシック";
     font-size: medium;
+    width: 99%;
+    margin: auto;
 }
 /* 強調 */
 em {
@@ -92,9 +96,13 @@ code {
 div.lastModified {
     font-family: "Times New Roman", "ＭＳ ゴシック";
     text-align: right;
+    width: 99%;
+    margin: auto;
 }
 div.copyright {
     text-align: center;
+    width: 99%;
+    margin: auto;
 }
 
 /**
@@ -103,4 +111,6 @@ div.copyright {
 div.math {
     margin: auto;
     text-align: center;
+    width: 99%;
+    margin: auto;
 }
